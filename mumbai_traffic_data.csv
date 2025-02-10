@@ -1,0 +1,6 @@
+Timestamp,From,To,Travel Time (With Traffic),Travel Time (Without Traffic)
+2025-02-10 15:27:52,"Chhatrapati Shivaji Terminus, Mumbai","Dadar, Mumbai",22 mins,19 mins
+2025-02-10 15:27:52,"Dadar, Mumbai","Bandra, Mumbai",29 mins,27 mins
+2025-02-10 15:27:52,"Bandra, Mumbai","Andheri, Mumbai",38 mins,31 mins
+2025-02-10 15:27:52,"Andheri, Mumbai","Goregaon, Mumbai",29 mins,27 mins
+2025-02-10 15:27:52,"Goregaon, Mumbai","Borivali, Mumbai",32 mins,25 mins
