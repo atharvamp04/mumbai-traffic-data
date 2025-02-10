@@ -36,8 +36,14 @@ jobs:
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
+          
+          # Ensure we have the latest changes from remote
+          git pull --rebase origin main
+          
           git add .
           git diff --cached --quiet || git commit -m "🔄 Auto-update traffic data"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/atharvamp04/mumbai-traffic-data.git
+          
+          # Push changes to GitHub
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
