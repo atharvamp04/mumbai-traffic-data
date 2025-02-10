@@ -1,36 +1,34 @@
-name: Collect Mumbai Traffic Data
+name: Mumbai Traffic Data Collection
 
 on:
   schedule:
-    - cron: "*/10 * * * *"  # Runs every 10 minutes
-  workflow_dispatch:  # Allows manual trigger
+    - cron: '0 * * * *' # Runs every hour
+  workflow_dispatch: # Allows manual trigger
 
 jobs:
-  collect-data:
+  collect_data:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set Up Python
-        uses: actions/setup-python@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.8"
+          python-version: '3.9'
 
       - name: Install Dependencies
-        run: pip install requests pandas
+        run: pip install -r requirements.txt
 
-      - name: Run Traffic Data Collection Script
-        run: python collect_traffic.py
-        env:
-          GMAPS_API_KEY: ${{ secrets.GMAPS_API_KEY }}
+      - name: Run Data Collection Script
+        run: python collect_traffic_data.py
 
-- name: Push changes to GitHub
-  run: |
-    git config --global user.email "github-actions@github.com"
-    git config --global user.name "github-actions"
-    git remote set-url origin https://atharvamp04:${{ secrets.GH_PAT }}@github.com/atharvamp04/mumbai-traffic-data.git
-    git add .
-    git commit -m "🔄 Auto-update traffic data"
-    git push origin main
+      - name: Push changes to GitHub
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          git remote set-url origin https://atharvamp04:${{ secrets.GH_PAT }}@github.com/atharvamp04/mumbai-traffic-data.git
+          git add .
+          git commit -m "🔄 Auto-update traffic data"
+          git push origin main
